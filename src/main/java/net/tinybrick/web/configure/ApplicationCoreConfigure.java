@@ -58,7 +58,7 @@ import net.tinybrick.web.notification.email.NotificationDelivererChain;
 @Configuration
 @EnableAutoConfiguration
 @EnableWebMvc
-@ComponentScan
+//@ComponentScan
 @Import(value = { ThreadConfig.class })
 //@EnableConfigurationProperties({ PropertySourcesPlaceholderConfigurer.class })
 @PropertySource(value = "classpath:config/core.properties")
