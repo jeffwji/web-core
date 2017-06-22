@@ -80,7 +80,7 @@ public class ApplicationCoreConfigure extends WebMvcConfigurerAdapter {
 	/**
 	 * Add static resources
 	 */
-	@Value("${web.static.classpath_resource:/images/;/css/;/static/;/public/;/js/}") String classPathResources;
+	@Value("${web.static.classpath_resource:/images;/css;/static;/public;/js}") String classPathResources;
 	@Bean
 	public WebResources getStaticResources() {
 		WebResources webResource =  new WebResources();
@@ -91,7 +91,13 @@ public class ApplicationCoreConfigure extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/**").addResourceLocations(getStaticResources().getStaticResources());
+	    String[] paths = getStaticResources().getStaticResources();
+	    String[] classPaths = new String[paths.length];
+	    for(int i=0; i<paths.length; i++) {
+            classPaths[i] = "classpath:"+paths[i] +"/";
+        }
+		//registry.addResourceHandler("/**").addResourceLocations(getStaticResources().getStaticResources());
+        registry.addResourceHandler("/**").addResourceLocations(classPaths);
 	}
 
 	@Autowired(required = false) SpringTemplateEngine templateEngine = new SpringTemplateEngine();
