@@ -94,10 +94,10 @@ public class ApplicationCoreConfigure extends WebMvcConfigurerAdapter {
 	    String[] paths = getStaticResources().getStaticResources();
 	    String[] classPaths = new String[paths.length];
 	    for(int i=0; i<paths.length; i++) {
-            classPaths[i] = "classpath:"+paths[i] +"/";
+            //classPaths[i] = "classpath:"+paths[i] +"/";
+            registry.addResourceHandler(paths[i] + "/**").addResourceLocations("classpath:"+paths[i] +"/");
         }
-		//registry.addResourceHandler("/**").addResourceLocations(getStaticResources().getStaticResources());
-        registry.addResourceHandler("/**").addResourceLocations(classPaths);
+        //registry.addResourceHandler("/**").addResourceLocations(classPaths);
 	}
 
 	@Autowired(required = false) SpringTemplateEngine templateEngine = new SpringTemplateEngine();
