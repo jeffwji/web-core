@@ -1,10 +1,13 @@
 package net.tinybrick.web.configure;
 
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
-
+import net.tinybrick.thread.configure.ThreadConfig;
+import net.tinybrick.utils.mail.MailBroker;
+import net.tinybrick.utils.mail.MailConfig;
+import net.tinybrick.web.annotation.ExceptionNotification;
+import net.tinybrick.web.notification.INotifiableExceptionDeliverer;
+import net.tinybrick.web.notification.email.ContactBook;
+import net.tinybrick.web.notification.email.NotifiableExceptionEmailAdapter;
+import net.tinybrick.web.notification.email.NotificationDelivererChain;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +15,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -22,12 +24,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.accept.ContentNegotiationManager;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -42,14 +39,9 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
-import net.tinybrick.thread.configure.ThreadConfig;
-import net.tinybrick.utils.mail.MailBroker;
-import net.tinybrick.utils.mail.MailConfig;
-import net.tinybrick.web.annotation.ExceptionNotification;
-import net.tinybrick.web.notification.INotifiableExceptionDeliverer;
-import net.tinybrick.web.notification.email.ContactBook;
-import net.tinybrick.web.notification.email.NotifiableExceptionEmailAdapter;
-import net.tinybrick.web.notification.email.NotificationDelivererChain;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.core.Context;
+import java.util.*;
 
 @Configuration
 @EnableAutoConfiguration
