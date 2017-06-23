@@ -1,22 +1,18 @@
 package net.tinybrick.web.configure;
 
+import java.util.Map;
+
 /**
  * Created by ji.wang on 2017-06-21.
  */
 public class WebResources {
-    String[] staticResources = null;
+    Map<String, String> staticResources = null;
 
-    public void setStaticResources(String[] staticResources) {
+    public void setStaticResources(Map<String, String> staticResources) {
         this.staticResources = staticResources;
     }
 
-    public String[] getStaticResources() {
-        return null == staticResources? new String[]{
-                "classpath:/images/",
-                "classpath:/css/",
-                "classpath:/static/",
-                "classpath:/public/",
-                "classpath:/js/"
-        } :staticResources;
+    public Map<String, String> getStaticResources() {
+        return staticResources;
     }
 }
