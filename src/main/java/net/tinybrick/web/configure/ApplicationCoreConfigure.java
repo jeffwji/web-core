@@ -47,9 +47,7 @@ import java.util.*;
 @Configuration
 @EnableAutoConfiguration
 @EnableWebMvc
-//@ComponentScan
-@Import(value = {ThreadConfig.class})
-//@EnableConfigurationProperties({ PropertySourcesPlaceholderConfigurer.class })
+@Import(value = {ThreadConfig.class, ShutdownManager.class})
 @PropertySource(value = "classpath:config/core.properties")
 public class ApplicationCoreConfigure extends WebMvcConfigurerAdapter {
     final Logger logger = Logger.getLogger(this.getClass());
