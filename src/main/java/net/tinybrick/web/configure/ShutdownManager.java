@@ -1,6 +1,7 @@
 package net.tinybrick.web.configure;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +21,7 @@ import java.net.Socket;
 @Service
 public class ShutdownManager {
     public final static String shutdown_command="shutdown";
-    Logger logger = Logger.getLogger(this.getClass().getName());
+    Logger logger = LogManager.getLogger(this.getClass().getName());
 
     @Autowired
     private ApplicationContext appContext;

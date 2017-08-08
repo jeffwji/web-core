@@ -8,7 +8,8 @@ import net.tinybrick.web.notification.INotifiableExceptionDeliverer;
 import net.tinybrick.web.notification.email.ContactBook;
 import net.tinybrick.web.notification.email.NotifiableExceptionEmailAdapter;
 import net.tinybrick.web.notification.email.NotificationDelivererChain;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -50,7 +51,7 @@ import java.util.*;
 @Import(value = {ThreadConfig.class, ShutdownManager.class})
 @PropertySource(value = "classpath:config/core.properties")
 public class ApplicationCoreConfigure extends WebMvcConfigurerAdapter {
-    final Logger logger = Logger.getLogger(this.getClass());
+    final Logger logger = LogManager.getLogger(this.getClass());
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -215,7 +216,7 @@ public class ApplicationCoreConfigure extends WebMvcConfigurerAdapter {
         @Value("${exception.notification.enabled:true}")
         boolean exception_notification_enabled;
 
-        final Logger logger = Logger.getLogger(this.getClass());
+        final Logger logger = LogManager.getLogger(this.getClass());
         protected @Autowired
         AsyncTaskExecutor asyncTaskExecutor;
 

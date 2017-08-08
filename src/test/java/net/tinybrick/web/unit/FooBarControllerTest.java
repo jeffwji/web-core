@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import net.tinybrick.test.web.unit.ControllerTestBase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import net.tinybrick.web.configure.ApplicationCoreConfigure;
 
-@SpringApplicationConfiguration(classes = ApplicationCoreConfigure.class)
+@SpringBootTest(classes = ApplicationCoreConfigure.class)
 @TestPropertySource(locations = "classpath:config/core.properties")
 public class FooBarControllerTest extends ControllerTestBase {
 	@Autowired AsyncTaskExecutor asyncTaskExecutor;
